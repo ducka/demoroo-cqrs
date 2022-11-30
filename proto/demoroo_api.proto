@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./internal/grpc/proto";
+
+message BranchSearchRequest {
+  string SearchText = 1;
+}
+
+message BranchSearchResponse {
+  repeated BranchSearchResultItem Results = 1;
+  int32 TotalCount = 2;
+}
+
+message BranchSearchResultItem {
+  string Id = 1;
+  string Name = 2;
+  bool Alt = 3;
+}
+
+service BranchSearchService {
+  rpc Search(BranchSearchRequest) returns (BranchSearchResponse);
+}
